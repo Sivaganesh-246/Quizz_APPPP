@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { isSupabaseConfigured } from '../lib/supabase';
 import { useAuth } from '../auth/AuthContext';
 
 const Login = () => {
@@ -66,10 +65,8 @@ const Login = () => {
                 required
               />
               {error && <p className="form-error" role="alert">{error}</p>}
-              {!isSupabaseConfigured && (
-                <p className="form-error" role="alert">Supabase URL and publishable key must be configured before teacher sign-in.</p>
-              )}
-              <button type="submit" className="btn btn-primary" disabled={isSubmitting || !isSupabaseConfigured}>
+              <p className="form-help">Demo browser-only teacher login credentials: username <strong>teacher</strong> and password <strong>teacher123</strong>.</p>
+              <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
                 {isSubmitting ? 'Signing in…' : 'Teacher Sign In'}
               </button>
             </form>
